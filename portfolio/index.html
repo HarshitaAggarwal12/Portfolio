@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Harshita Aggarwal | Data Analyst</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --color-bg:        #faf9f7;
+      --color-surface:   #f2f0ec;
+      --color-border:    #e5e2db;
+      --color-text:      #1a1916;
+      --color-muted:     #7a776f;
+      --color-accent:    #2d5a3d;
+      --color-accent-lt: #e8f0eb;
+      --font-display:    'Cormorant Garamond', Georgia, serif;
+      --font-body:       'DM Sans', sans-serif;
+      --radius-sm:   8px;
+      --radius-md:   16px;
+      --radius-lg:   24px;
+      --max-width:   1080px;
+      --nav-height:  64px;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--font-body); background-color: var(--color-bg); color: var(--color-text); font-size: 16px; line-height: 1.7; -webkit-font-smoothing: antialiased; }
+    img { max-width: 100%; display: block; }
+    a { color: inherit; text-decoration: none; }
+    ul { list-style: none; }
+    .container { max-width: var(--max-width); margin: 0 auto; padding: 0 24px; }
+    .section { padding: 96px 0; }
+    .section--tinted { background-color: var(--color-surface); }
+    .section-label { font-family: var(--font-body); font-size: 11px; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; color: var(--color-accent); margin-bottom: 12px; }
+    .section-title { font-family: var(--font-display); font-size: clamp(2rem, 4vw, 2.8rem); font-weight: 300; line-height: 1.2; color: var(--color-text); margin-bottom: 16px; }
+    .section-desc { font-size: 15px; color: var(--color-muted); max-width: 520px; line-height: 1.8; margin-bottom: 56px; }
+
+    /* NAV */
+    .nav { position: fixed; top: 0; left: 0; right: 0; height: var(--nav-height); background: rgba(250,249,247,0.88); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border-bottom: 1px solid var(--color-border); z-index: 999; display: flex; align-items: center; }
+    .nav__inner { width: 100%; max-width: var(--max-width); margin: 0 auto; padding: 0 24px; display: flex; align-items: center; justify-content: space-between; }
+    .nav__logo { font-family: var(--font-display); font-size: 22px; font-weight: 600; letter-spacing: -0.02em; color: var(--color-text); }
+    .nav__links { display: flex; gap: 36px; }
+    .nav__links a { font-size: 13px; font-weight: 400; color: var(--color-muted); letter-spacing: 0.02em; transition: color 0.2s; }
+    .nav__links a:hover { color: var(--color-text); }
+    .nav__cta { font-size: 13px; font-weight: 500; padding: 8px 20px; border: 1px solid var(--color-text); border-radius: 40px; color: var(--color-text); transition: background 0.2s, color 0.2s; }
+    .nav__cta:hover { background: var(--color-text); color: var(--color-bg); }
+    .nav__hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; background: none; border: none; padding: 4px; }
+    .nav__hamburger span { display: block; width: 22px; height: 1.5px; background: var(--color-text); }
+    .nav__mobile { display: none; position: fixed; top: var(--nav-height); left: 0; right: 0; background: var(--color-bg); border-bottom: 1px solid var(--color-border); padding: 24px; flex-direction: column; gap: 20px; z-index: 998; }
+    .nav__mobile a { font-size: 15px; color: var(--color-muted); }
+    .nav__mobile.open { display: flex; }
+
+    /* HERO */
+    #hero { padding-top: calc(var(--nav-height) + 80px); padding-bottom: 96px; }
+    .hero__inner { display: grid; grid-template-columns: 1fr 360px; gap: 64px; align-items: center; }
+    .hero__badge { display: inline-flex; align-items: center; gap: 8px; font-size: 12px; font-weight: 500; color: var(--color-accent); background: var(--color-accent-lt); padding: 6px 14px; border-radius: 40px; margin-bottom: 24px; }
+    .hero__badge-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--color-accent); animation: pulse 2s infinite; }
+    @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
+    .hero__heading { font-family: var(--font-display); font-size: clamp(2.8rem, 6vw, 4.4rem); font-weight: 300; line-height: 1.1; letter-spacing: -0.02em; margin-bottom: 24px; }
+    .hero__heading em { font-style: italic; color: var(--color-accent); }
+    .hero__tagline { font-size: 15px; color: var(--color-muted); max-width: 460px; line-height: 1.9; margin-bottom: 40px; }
+    .hero__actions { display: flex; gap: 16px; flex-wrap: wrap; }
+    .btn { display: inline-flex; align-items: center; gap: 8px; font-family: var(--font-body); font-size: 14px; font-weight: 500; padding: 12px 28px; border-radius: 40px; cursor: pointer; transition: all 0.2s; border: none; }
+    .btn--primary { background: var(--color-text); color: var(--color-bg); }
+    .btn--primary:hover { background: #333; transform: translateY(-1px); }
+    .btn--outline { background: transparent; color: var(--color-text); border: 1px solid var(--color-border); }
+    .btn--outline:hover { border-color: var(--color-text); transform: translateY(-1px); }
+    .hero__stats { display: flex; gap: 40px; margin-top: 56px; padding-top: 40px; border-top: 1px solid var(--color-border); }
+    .hero__stat-number { font-family: var(--font-display); font-size: 2.2rem; font-weight: 600; line-height: 1; color: var(--color-text); }
+    .hero__stat-label { font-size: 12px; color: var(--color-muted); margin-top: 4px; }
+    .hero__image-wrap { position: relative; }
+    .hero__image { width: 100%; aspect-ratio: 3 / 4; object-fit: cover; border-radius: var(--radius-lg); background: var(--color-surface); }
+    .hero__image-wrap::before { content: ''; position: absolute; inset: 12px -12px -12px 12px; border-radius: var(--radius-lg); border: 1px solid var(--color-border); z-index: -1; }
+
+    /* ABOUT */
+    .about__grid { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: start; }
+    .about__text p { font-size: 15px; color: var(--color-muted); margin-bottom: 16px; line-height: 1.9; }
+    .about__cards { display: flex; flex-direction: column; gap: 16px; }
+    .about__card { background: var(--color-bg); border: 1px solid var(--color-border); border-radius: var(--radius-md); padding: 24px; }
+    .about__card-label { font-size: 11px; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--color-accent); margin-bottom: 8px; }
+    .about__card-text { font-size: 14px; color: var(--color-muted); line-height: 1.7; }
+
+    /* SKILLS */
+    .skills__groups { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 32px; }
+    .skills__group-title { font-size: 11px; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--color-muted); margin-bottom: 16px; }
+    .skills__tags { display: flex; flex-wrap: wrap; gap: 8px; }
+    .skill-tag { font-size: 13px; font-weight: 400; padding: 6px 16px; border-radius: 40px; background: var(--color-accent-lt); color: var(--color-accent); border: 1px solid transparent; transition: border-color 0.2s; }
+    .skill-tag:hover { border-color: var(--color-accent); }
+
+    /* EDUCATION */
+    .education__outer { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; }
+    .education__sidebar { display: flex; flex-direction: column; gap: 16px; padding-top: 8px; }
+    .edu-side-card { background: var(--color-bg); border: 1px solid var(--color-border); border-radius: var(--radius-md); padding: 24px; }
+    .edu-side-card__label { font-size: 11px; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--color-accent); margin-bottom: 8px; }
+    .edu-side-card__title { font-family: var(--font-display); font-size: 1.1rem; font-weight: 400; margin-bottom: 8px; }
+    .edu-side-card__text { font-size: 14px; color: var(--color-muted); line-height: 1.7; }
+    .edu-timeline { position: relative; padding-left: 32px; }
+    .edu-timeline::before { content: ''; position: absolute; left: 7px; top: 8px; bottom: 8px; width: 1px; background: linear-gradient(to bottom, var(--color-accent) 0%, var(--color-border) 100%); }
+    .edu-item { position: relative; padding-bottom: 48px; }
+    .edu-item:last-child { padding-bottom: 0; }
+    .edu-item::before { content: ''; position: absolute; left: -32px; top: 6px; width: 14px; height: 14px; border-radius: 50%; background: var(--color-bg); border: 2px solid var(--color-accent); box-shadow: 0 0 0 3px var(--color-accent-lt); }
+    .edu-item--active::before { background: var(--color-accent); }
+    .edu-item__status { font-size: 11px; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--color-accent); margin-bottom: 6px; }
+    .edu-item__badge { display: inline-flex; align-items: center; gap: 6px; font-size: 11px; font-weight: 500; color: var(--color-accent); background: var(--color-accent-lt); padding: 3px 10px; border-radius: 40px; margin-bottom: 6px; }
+    .edu-item__badge-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--color-accent); animation: pulse 2s infinite; }
+    .edu-item__degree { font-family: var(--font-display); font-size: 1.35rem; font-weight: 400; line-height: 1.2; margin-bottom: 6px; }
+    .edu-item__institution { font-size: 13px; font-weight: 500; color: var(--color-text); margin-bottom: 4px; }
+    .edu-item__year { font-size: 12px; color: var(--color-muted); margin-bottom: 12px; }
+    .edu-item__desc { font-size: 14px; color: var(--color-muted); line-height: 1.8; }
+    .edu-item__pills { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
+    .edu-pill { font-size: 12px; padding: 4px 12px; border-radius: 40px; border: 1px solid var(--color-border); color: var(--color-muted); }
+
+    /* PROJECTS */
+    .projects__grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+    .project-card { background: var(--color-bg); border: 1px solid var(--color-border); border-radius: var(--radius-md); overflow: hidden; transition: transform 0.25s, box-shadow 0.25s; }
+    .project-card:hover { transform: translateY(-4px); box-shadow: 0 12px 40px rgba(0,0,0,0.07); }
+    .project-card__icon { width: 100%; aspect-ratio: 16/9; display: flex; align-items: center; justify-content: center; font-size: 3rem; background: var(--color-surface); }
+    .project-card__body { padding: 20px 20px 24px; }
+    .project-card__tag { font-size: 11px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--color-accent); margin-bottom: 8px; }
+    .project-card__title { font-family: var(--font-display); font-size: 1.2rem; font-weight: 400; margin-bottom: 8px; }
+    .project-card__desc { font-size: 13px; color: var(--color-muted); line-height: 1.7; margin-bottom: 16px; }
+    .project-card__tools { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 16px; }
+    .project-card__tool { font-size: 11px; padding: 3px 10px; border-radius: 40px; border: 1px solid var(--color-border); color: var(--color-muted); }
+    .project-card__link { font-size: 13px; font-weight: 500; color: var(--color-accent); display: inline-flex; align-items: center; gap: 4px; transition: gap 0.2s; }
+    .project-card__link:hover { gap: 8px; }
+
+    /* CERTIFICATES */
+    .certs__track { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 20px; }
+    .cert-card { background: var(--color-bg); border: 1px solid var(--color-border); border-radius: var(--radius-md); overflow: hidden; transition: transform 0.2s; }
+    .cert-card:hover { transform: translateY(-3px); }
+    .cert-card__icon { width: 100%; aspect-ratio: 4/3; display: flex; align-items: center; justify-content: center; font-size: 2.5rem; background: var(--color-surface); }
+    .cert-card__body { padding: 14px 16px 18px; }
+    .cert-card__issuer { font-size: 11px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.08em; color: var(--color-accent); margin-bottom: 4px; }
+    .cert-card__title { font-size: 14px; font-weight: 500; color: var(--color-text); margin-bottom: 4px; }
+    .cert-card__date { font-size: 12px; color: var(--color-muted); }
+
+    /* CONTACT */
+    .contact__inner { max-width: 600px; margin: 0 auto; text-align: center; }
+    .contact__inner .section-title { margin-bottom: 16px; }
+    .contact__inner .section-desc { margin: 0 auto 40px; }
+    .contact__email { display: inline-block; font-family: var(--font-display); font-size: clamp(1.2rem, 3vw, 1.6rem); font-weight: 300; color: var(--color-text); border-bottom: 1px solid var(--color-border); padding-bottom: 4px; margin-bottom: 48px; transition: border-color 0.2s, color 0.2s; }
+    .contact__email:hover { color: var(--color-accent); border-color: var(--color-accent); }
+    .contact__socials { display: flex; justify-content: center; gap: 16px; flex-wrap: wrap; }
+    .contact__social-link { display: inline-flex; align-items: center; gap: 8px; font-size: 13px; font-weight: 500; color: var(--color-muted); padding: 10px 20px; border: 1px solid var(--color-border); border-radius: 40px; transition: all 0.2s; }
+    .contact__social-link:hover { color: var(--color-text); border-color: var(--color-text); }
+
+    /* FOOTER */
+    .footer { border-top: 1px solid var(--color-border); padding: 32px 0; }
+    .footer__inner { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px; }
+    .footer__copy { font-size: 13px; color: var(--color-muted); }
+    .footer__links { display: flex; gap: 24px; }
+    .footer__links a { font-size: 13px; color: var(--color-muted); transition: color 0.2s; }
+    .footer__links a:hover { color: var(--color-text); }
+
+    /* FADE IN */
+    .fade-in { opacity: 0; transform: translateY(24px); transition: opacity 0.6s ease, transform 0.6s ease; }
+    .fade-in.visible { opacity: 1; transform: translateY(0); }
+
+    /* RESPONSIVE */
+    @media (max-width: 900px) {
+      .nav__links, .nav__cta { display: none; }
+      .nav__hamburger { display: flex; }
+      .hero__inner { grid-template-columns: 1fr; }
+      .hero__image-wrap { order: -1; max-width: 260px; margin: 0 auto; }
+      .about__grid, .education__outer { grid-template-columns: 1fr; }
+      .projects__grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 560px) {
+      .section { padding: 64px 0; }
+      .projects__grid { grid-template-columns: 1fr; }
+      .hero__stats { flex-wrap: wrap; gap: 20px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav class="nav">
+    <div class="nav__inner">
+      <a href="#hero" class="nav__logo">HA</a>
+      <ul class="nav__links">
+        <li><a href="#about">About</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#education">Education</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#certificates">Certificates</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+      <a href="mailto:aggarwalharshita12@gmail.com" class="nav__cta">Hire Me</a>
+      <button class="nav__hamburger" id="hamburger" aria-label="Open menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <div class="nav__mobile" id="mobileMenu">
+    <a href="#about"        onclick="closeMobile()">About</a>
+    <a href="#skills"       onclick="closeMobile()">Skills</a>
+    <a href="#education"    onclick="closeMobile()">Education</a>
+    <a href="#projects"     onclick="closeMobile()">Projects</a>
+    <a href="#certificates" onclick="closeMobile()">Certificates</a>
+    <a href="#contact"      onclick="closeMobile()">Contact</a>
+  </div>
+
+
+  <!-- HERO -->
+  <section id="hero" class="section">
+    <div class="container">
+      <div class="hero__inner">
+        <div class="hero__content fade-in">
+          <div class="hero__badge">
+            <span class="hero__badge-dot"></span>
+            Open to opportunities
+          </div>
+          <h1 class="hero__heading">
+            Harshita<br>Aggarwal<br>
+            <em>Data Analyst</em>
+          </h1>
+          <p class="hero__tagline">
+            Results-driven BCA graduate skilled in Power BI, Python, and SQL. I turn raw data into clear insights — building dashboards, automating workflows, and bridging the gap between data and decisions.
+          </p>
+          <div class="hero__actions">
+            <a href="#projects" class="btn btn--primary">View My Work</a>
+            <a href="mailto:aggarwalharshita12@gmail.com" class="btn btn--outline">Get In Touch</a>
+          </div>
+          <div class="hero__stats">
+            <div>
+              <div class="hero__stat-number">3</div>
+              <div class="hero__stat-label">Projects completed</div>
+            </div>
+            <div>
+              <div class="hero__stat-number">5</div>
+              <div class="hero__stat-label">Certifications earned</div>
+            </div>
+            <!-- <div>
+              <div class="hero__stat-number">100+</div>
+              <div class="hero__stat-label">Languages supported (translator)</div>
+            </div> -->
+          </div>
+        </div>
+        <div class="hero__image-wrap fade-in">
+          <!-- Replace src with your actual photo -->
+          <div style="width:100%;aspect-ratio:3/4;border-radius:var(--radius-lg);background:var(--color-surface);display:flex;align-items:center;justify-content:center;font-size:5rem;">👩‍💻</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ABOUT -->
+  <section id="about" class="section section--tinted">
+    <div class="container">
+      <div class="about__grid">
+        <div class="about__text fade-in">
+          <p class="section-label">About</p>
+          <h2 class="section-title">Data-driven, detail-oriented, and always curious</h2>
+          <p>I'm a BCA graduate passionate about making data work for people. With hands-on experience in Power BI, Python, SQL, and API integration, I build solutions that are both technically sound and genuinely useful — whether that's a real-time inventory dashboard or an intelligent chatbot.</p>
+          <p>I thrive in environments where business problems need analytical thinking. I enjoy translating complex data into clean visuals and clear narratives that help teams make better decisions faster.</p>
+          <p>When I'm not wrangling datasets or crafting DAX measures, I'm exploring new tools, taking on certification challenges, and looking for the next interesting problem to solve.</p>
+        </div>
+        <div class="about__cards fade-in">
+          <div class="about__card">
+            <div class="about__card-label">Current Focus</div>
+            <p class="about__card-text">Pursuing MCA while deepening expertise in advanced SQL, Power BI, and Python-based data workflows. Actively building projects that solve real business problems.</p>
+          </div>
+          <div class="about__card">
+            <div class="about__card-label">Best Fit</div>
+            <p class="about__card-text">Data Analyst, BI Developer, or Python Developer roles — ideally at product or consulting companies where data drives key decisions.</p>
+          </div>
+          <div class="about__card">
+            <div class="about__card-label">Approach</div>
+            <p class="about__card-text">Collaborative and business-first. I focus on understanding the "why" before diving into the data, and always keep the end user in mind when designing outputs.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- SKILLS -->
+  <section id="skills" class="section">
+    <div class="container">
+      <p class="section-label fade-in">Skills</p>
+      <h2 class="section-title fade-in">Tools and technologies I work with</h2>
+      <div class="skills__groups fade-in">
+        <div>
+          <p class="skills__group-title">Languages</p>
+          <div class="skills__tags">
+            <span class="skill-tag">SQL</span>
+            <span class="skill-tag">Python</span>
+            <span class="skill-tag">DAX</span>
+          </div>
+        </div>
+        <div>
+          <p class="skills__group-title">Python Libraries</p>
+          <div class="skills__tags">
+            <span class="skill-tag">pandas</span>
+            <span class="skill-tag">numpy</span>
+            <span class="skill-tag">matplotlib</span>
+            <span class="skill-tag">selenium</span>
+          </div>
+        </div>
+        <div>
+          <p class="skills__group-title">Analytics & BI</p>
+          <div class="skills__tags">
+            <span class="skill-tag">Power BI</span>
+            <span class="skill-tag">Power Query</span>
+            <span class="skill-tag">MS Excel</span>
+            <span class="skill-tag">Tableau</span>
+          </div>
+        </div>
+        <div>
+          <p class="skills__group-title">Platforms & Tools</p>
+          <div class="skills__tags">
+            <span class="skill-tag">SharePoint</span>
+            <span class="skill-tag">Databricks</span>
+            <span class="skill-tag">Jupyter Notebook</span>
+            <span class="skill-tag">VS Code</span>
+          </div>
+        </div>
+        <div>
+          <p class="skills__group-title">Data Concepts</p>
+          <div class="skills__tags">
+            <span class="skill-tag">ETL</span>
+            <span class="skill-tag">Star Schema</span>
+            <span class="skill-tag">Data Cleaning</span>
+            <span class="skill-tag">Time Intelligence</span>
+          </div>
+        </div>
+        <div>
+          <p class="skills__group-title">Soft Skills</p>
+          <div class="skills__tags">
+            <span class="skill-tag">Client Interaction</span>
+            <span class="skill-tag">Cross-Functional Collaboration</span>
+            <span class="skill-tag">Stakeholder Reporting</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- EDUCATION -->
+  <section id="education" class="section section--tinted">
+    <div class="container">
+      <p class="section-label fade-in">Education</p>
+      <h2 class="section-title fade-in">Academic foundation</h2>
+      <div class="education__outer">
+
+        <div class="education__sidebar fade-in">
+          <div class="edu-side-card">
+            <div class="edu-side-card__label">Currently Learning</div>
+            <h3 class="edu-side-card__title">Deepening data & development skills</h3>
+            <p class="edu-side-card__text">Advanced SQL window functions, Power BI report design patterns, Python automation, and exploring cloud fundamentals on Databricks.</p>
+          </div>
+          <div class="edu-side-card">
+            <div class="edu-side-card__label">Career Goal</div>
+            <h3 class="edu-side-card__title">Data Analyst · BI Developer</h3>
+            <p class="edu-side-card__text">Aiming to join a data-driven team where I can translate complex datasets into actionable business insights, build robust dashboards, and support strategic decision-making.</p>
+          </div>
+        </div>
+
+        <div class="edu-timeline fade-in">
+
+          <div class="edu-item edu-item--active">
+            <div class="edu-item__badge">
+              <span class="edu-item__badge-dot"></span>
+              Pursuing
+            </div>
+            <h3 class="edu-item__degree">Master of Computer Applications</h3>
+            <p class="edu-item__institution">Currently Enrolled</p>
+            <p class="edu-item__year">2025 – Present</p>
+            <p class="edu-item__desc">Advancing knowledge in software development, data systems, and applied computing with a focus on analytics and intelligent applications.</p>
+            <div class="edu-item__pills">
+              <span class="edu-pill">Data Systems</span>
+              <span class="edu-pill">Advanced Programming</span>
+            </div>
+          </div>
+
+          <div class="edu-item">
+            <p class="edu-item__status">Completed</p>
+            <h3 class="edu-item__degree">Bachelor of Computer Applications</h3>
+            <p class="edu-item__institution">IME College, CCSU</p>
+            <p class="edu-item__year">Graduated 2025</p>
+            <p class="edu-item__desc">Built a strong foundation in programming, data structures, databases, and software engineering — applying skills through hands-on projects in Python and Power BI.</p>
+            <div class="edu-item__pills">
+              <span class="edu-pill">CGPA: 7.2 </span>
+              <span class="edu-pill">Python</span>
+              <span class="edu-pill">DBMS</span>
+            </div>
+          </div>
+
+          <!-- <div class="edu-item">
+            <p class="edu-item__status">Completed</p>
+            <h3 class="edu-item__degree">12th Grade — Science</h3>
+            <p class="edu-item__institution">BVM School, CBSE</p>
+            <p class="edu-item__year">2022</p>
+            <div class="edu-item__pills">
+              <span class="edu-pill">84%</span>
+              <span class="edu-pill">CBSE</span>
+            </div> -->
+          <!-- </div> -->
+
+          <!-- <div class="edu-item">
+            <p class="edu-item__status">Completed</p>
+            <h3 class="edu-item__degree">10th Grade</h3>
+            <p class="edu-item__institution">BVM School, CBSE</p>
+            <p class="edu-item__year">2020</p>
+            <div class="edu-item__pills">
+              <span class="edu-pill">69%</span>
+              <span class="edu-pill">CBSE</span>
+            </div> -->
+          <!-- </div> -->
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- PROJECTS -->
+  <section id="projects" class="section">
+    <div class="container">
+      <p class="section-label fade-in">Projects</p>
+      <h2 class="section-title fade-in">Selected work</h2>
+      <p class="section-desc fade-in">Real-world projects spanning API integration, data visualisation, and AI — each built to solve a concrete problem.</p>
+
+      <div class="projects__grid">
+
+        <div class="project-card fade-in">
+          <div class="project-card__icon">🌐</div>
+          <div class="project-card__body">
+            <p class="project-card__tag">Python · API Integration</p>
+            <h3 class="project-card__title">Language Translator</h3>
+            <p class="project-card__desc">A command-line translator supporting 100+ languages via the Google Translate API, with robust error handling for API limits and connectivity issues.</p>
+            <div class="project-card__tools">
+              <span class="project-card__tool">Python</span>
+              <span class="project-card__tool">Google Translate API</span>
+              <span class="project-card__tool">CLI</span>
+            </div>
+            <a href="https://github.com/HarshitaAggarwal12" target="_blank" class="project-card__link">View on GitHub →</a>
+          </div>
+        </div>
+
+        <div class="project-card fade-in">
+          <div class="project-card__icon">📊</div>
+          <div class="project-card__body">
+            <p class="project-card__tag">Power BI · Data Visualisation</p>
+            <h3 class="project-card__title">Inventory Management Dashboard</h3>
+            <p class="project-card__desc">Real-time inventory monitoring dashboard pulling live data from SharePoint-hosted Excel files, with custom DAX measures for stock alerts and drill-down analysis.</p>
+            <div class="project-card__tools">
+              <span class="project-card__tool">Power BI</span>
+              <span class="project-card__tool">DAX</span>
+              <span class="project-card__tool">Power Query</span>
+              <span class="project-card__tool">SharePoint</span>
+            </div>
+            <a href="https://github.com/HarshitaAggarwal12" target="_blank" class="project-card__link">View on GitHub →</a>
+          </div>
+        </div>
+
+        <div class="project-card fade-in">
+          <div class="project-card__icon">🤖</div>
+          <div class="project-card__body">
+            <p class="project-card__tag">AI · Prompt Engineering</p>
+            <h3 class="project-card__title">AI Chatbot</h3>
+            <p class="project-card__desc">An intelligent chatbot powered by Google's Gemini LLM API, featuring real-time streaming replies, input validation, and prompt-engineered responses across multiple domains.</p>
+            <div class="project-card__tools">
+              <span class="project-card__tool">Python</span>
+              <span class="project-card__tool">Gemini API</span>
+              <span class="project-card__tool">Prompt Engineering</span>
+            </div>
+            <a href="https://github.com/HarshitaAggarwal12" target="_blank" class="project-card__link">View on GitHub →</a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- CERTIFICATES -->
+  <section id="certificates" class="section section--tinted">
+    <div class="container">
+      <p class="section-label fade-in">Certificates</p>
+      <h2 class="section-title fade-in">Verified learning</h2>
+      <p class="section-desc fade-in">Courses and programmes I've completed to sharpen my analytical and technical skills.</p>
+
+      <div class="certs__track">
+
+        <div class="cert-card fade-in">
+          <div class="cert-card__icon"></div>
+          <div class="cert-card__body">
+            <p class="cert-card__issuer">ICT Academy</p>
+            <p class="cert-card__title">Data Analysis Training</p>
+            <p class="cert-card__date">August 2024</p>
+          </div>
+        </div>
+
+        <div class="cert-card fade-in">
+          <div class="cert-card__icon"><img src="jpmorgan.png"></div>
+          <div class="cert-card__body">
+            <p class="cert-card__issuer">Forage</p>
+            <p class="cert-card__title">Excel Skills</p>
+            <p class="cert-card__date">September 2024</p>
+          </div>
+        </div>
+
+        <div class="cert-card fade-in">
+          <div class="cert-card__icon"><img src="forage.png"></div>
+          <div class="cert-card__body">
+            <p class="cert-card__issuer">Forage</p>
+            <p class="cert-card__title">Data Analytics and Visualization</p>
+            <p class="cert-card__date">September 2024</p>
+          </div>
+        </div>
+
+        <div class="cert-card fade-in">
+          <div class="cert-card__icon"><img src="deloitte.png"></div>
+          <div class="cert-card__body">
+            <p class="cert-card__issuer">Deloitte</p>
+            <p class="cert-card__title">Data Analytics</p>
+            <p class="cert-card__date">August 2025</p>
+          </div>
+        </div>
+
+        <div class="cert-card fade-in">
+          <div class="cert-card__icon"><img src="hackerrank.png"></div>
+          <div class="cert-card__body">
+            <p class="cert-card__issuer">HackerRank</p>
+            <p class="cert-card__title">SQL (Advanced)</p>
+            <p class="cert-card__date">September 2025</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- CONTACT -->
+  <section id="contact" class="section">
+    <div class="container">
+      <div class="contact__inner fade-in">
+        <p class="section-label">Contact</p>
+        <h2 class="section-title">Let's connect</h2>
+        <p class="section-desc">Open to new roles, collaborations, and interesting conversations about data and technology.</p>
+        <a href="mailto:aggarwalharshita12@gmail.com" class="contact__email">aggarwalharshita12@gmail.com</a>
+        <div class="contact__socials">
+          <a href="https://www.linkedin.com/in/harshita-aggarwal-7aa03a296/" target="_blank" class="contact__social-link">
+            <span>in</span> LinkedIn
+          </a>
+          <a href="https://github.com/HarshitaAggarwal12" target="_blank" class="contact__social-link">
+            <span>gh</span> GitHub
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__inner">
+        <p class="footer__copy">© 2025 Harshita Aggarwal. All rights reserved.</p>
+        <div class="footer__links">
+          <a href="#hero">Top</a>
+          <a href="https://www.linkedin.com/in/harshita-aggarwal-7aa03a296/" target="_blank">LinkedIn</a>
+          <a href="https://github.com/HarshitaAggarwal12" target="_blank">GitHub</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+
+  <script>
+    const hamburger  = document.getElementById('hamburger');
+    const mobileMenu = document.getElementById('mobileMenu');
+    hamburger.addEventListener('click', () => mobileMenu.classList.toggle('open'));
+    function closeMobile() { mobileMenu.classList.remove('open'); }
+
+    const observer = new IntersectionObserver(
+      entries => entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } }),
+      { threshold: 0.12 }
+    );
+    document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+  </script>
+
+</body>
+</html>
